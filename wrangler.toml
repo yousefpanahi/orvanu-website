@@ -1,3 +1,27 @@
 name = "orvanu"
 pages_build_output_dir = "public"
 compatibility_date = "2026-11-23"
+
+# Plain (non-secret) runtime variables live here so every Wrangler deploy keeps
+# them. The Pages dashboard only manages secrets for this project: a deploy
+# rewrites plain variables from this file, so values set only in the dashboard
+# would silently disappear on the next push.
+[vars]
+ADMIN_EMAILS = "orvanutech@gmail.com"
+INQUIRY_TO_EMAIL = "orvanutech@gmail.com"
+INQUIRY_FROM_EMAIL = "onboarding@resend.dev"
+PUBLIC_SITE_URL = "https://orvanu.pages.dev"
+
+# The database must exist before deploying: a binding to a missing database
+# fails the whole deploy. Created 24 Nov 2026 (EU jurisdiction).
+[[d1_databases]]
+binding = "DB"
+database_name = "orvanu-inquiries"
+database_id = "d57dc72e-eb12-4969-ba6e-ba88eed61559"
+
+# R2 is intentionally not bound yet: enabling R2 needs a payment method on the
+# account. Until then attachments are accepted but reported as "NOT STORED".
+# When the bucket exists, add:
+# [[r2_buckets]]
+# binding = "INQUIRIES"
+# bucket_name = "orvanu-inquiries"
