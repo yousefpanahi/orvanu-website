@@ -23,7 +23,7 @@
       ],
       initials: 'YP',
       photo: 'assets/team/yousef.jpg',
-      linkedin: ''    // e.g. 'https://www.linkedin.com/in/...'
+      linkedin: 'https://www.linkedin.com/in/yousef-panahi'
     },
     {
       name: 'Saeed Najafi',
@@ -39,7 +39,7 @@
       ],
       initials: 'SN',
       photo: 'assets/team/saeed.jpg',
-      linkedin: ''    // e.g. 'https://www.linkedin.com/in/...'
+      linkedin: 'https://www.linkedin.com/in/saeed-najafi-developer'
     },
     {
       name: 'Mohammadreza Akbari',
@@ -55,7 +55,7 @@
       ],
       initials: 'MA',
       photo: 'assets/team/mohammadreza.jpg',
-      linkedin: ''    // e.g. 'https://www.linkedin.com/in/...'
+      linkedin: 'https://www.linkedin.com/in/mohammadreza-akbari-developer/'
     }
   ];
 
