@@ -353,11 +353,22 @@ a { color: var(--purple-deep); }
   top: 18px;
 }
 
+.detail-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .detail h2 {
   margin: 0 0 2px;
   font-size: 20px;
   letter-spacing: -0.6px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
+
+.detail-head .pill { margin-top: 3px; flex: 0 0 auto; }
 
 .detail .ref {
   font-size: 11.5px;

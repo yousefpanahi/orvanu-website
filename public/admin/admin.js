@@ -310,7 +310,11 @@
     detailNode.replaceChildren();
     detailNode.hidden = false;
 
-    detailNode.append(el('h2', '', inquiry.name || 'Unnamed inquiry'));
+    const heading = el('div', 'detail-head');
+    heading.append(el('h2', '', inquiry.name || 'Unnamed inquiry'));
+    const pill = el('span', `pill ${PILL_CLASS[inquiry.status] || inquiry.status}`, inquiry.status);
+    heading.append(pill);
+    detailNode.append(heading);
     detailNode.append(el('p', 'ref', `${inquiry.id} · submitted ${formatDate(inquiry.created_at)}`));
 
     const grid = el('dl', 'grid');
@@ -376,13 +380,10 @@
       if (result.status === 200) {
         inquiry.status = result.data.status;
         inquiry.status_changed_at = result.data.status_changed_at;
+        pill.className = `pill ${PILL_CLASS[inquiry.status] || inquiry.status}`;
+        pill.textContent = inquiry.status;
         setStatus(feedback, `Status updated to ${result.data.status}.`);
         loadList();
-        const pill = detailNode.querySelector('.pill');
-        if (pill) {
-          pill.className = `pill ${PILL_CLASS[inquiry.status] || inquiry.status}`;
-          pill.textContent = inquiry.status;
-        }
       } else {
         setStatus(feedback, result.data.error || 'Could not update the status.', true);
       }
