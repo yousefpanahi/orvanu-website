@@ -1,6 +1,6 @@
 # Team portraits
 
-Drop real photographs of the team in this folder, using these exact filenames:
+Real photographs of the team live in this folder:
 
 | File | Person |
 |------|--------|
@@ -8,13 +8,11 @@ Drop real photographs of the team in this folder, using these exact filenames:
 | `saeed.jpg` | Saeed Najafi |
 | `mohammadreza.jpg` | Mohammadreza Akbari |
 
-Then enable each photo in `public/script.js` by setting the `photo` field of the
-matching team member, e.g. `photo: 'assets/team/yousef.jpg'`.
+They are enabled in `public/script.js` through each member's `photo` field. If a
+photo is removed or fails to load, the card automatically falls back to an
+elegant initials placeholder — no broken images.
 
-Until a photo is enabled (or if the file fails to load), the card automatically
-shows an elegant initials placeholder — no broken images.
-
-## Photo guidelines
+## Photo guidelines (for future updates)
 
 - **Aspect ratio:** 4:5 portrait (vertical). A 4:5 crop is applied automatically, so keep the face comfortably inside the frame.
 - **Recommended size:** 800 × 1000 px (never below 480 × 600 px).
