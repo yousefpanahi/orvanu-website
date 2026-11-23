@@ -22,7 +22,7 @@
         'B2B Platforms'
       ],
       initials: 'YP',
-      photo: '',      // e.g. 'assets/team/yousef.jpg'
+      photo: 'assets/team/yousef.jpg',
       linkedin: ''    // e.g. 'https://www.linkedin.com/in/...'
     },
     {
@@ -38,7 +38,7 @@
         'Software Engineering'
       ],
       initials: 'SN',
-      photo: '',      // e.g. 'assets/team/saeed.jpg'
+      photo: 'assets/team/saeed.jpg',
       linkedin: ''    // e.g. 'https://www.linkedin.com/in/...'
     },
     {
@@ -54,7 +54,7 @@
         'Business Applications'
       ],
       initials: 'MA',
-      photo: '',      // e.g. 'assets/team/mohammadreza.jpg'
+      photo: 'assets/team/mohammadreza.jpg',
       linkedin: ''    // e.g. 'https://www.linkedin.com/in/...'
     }
   ];
