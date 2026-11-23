@@ -33,6 +33,7 @@ git push to main  →  GitHub Actions (deploy.yml)  →  wrangler pages deploy p
 1. Create a branch, edit files in `public/`, open a pull request to `main`.
 2. After merge, the workflow deploys automatically and verifies the result in the Actions log.
 3. Keep changes honest: no fabricated clients, testimonials, metrics, or case studies. Demonstration concepts must stay clearly labeled.
+4. **Team section:** names, titles, bios, expertise tags, photo paths and LinkedIn URLs are defined once in the `TEAM` array in `public/script.js`. Add a member by appending an entry; enable a photo by setting its `photo` path (see `public/assets/team/README.md`); leave `linkedin` empty until the URL is verified.
 
 ### Local preview
 
