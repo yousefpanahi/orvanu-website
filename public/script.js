@@ -15,11 +15,13 @@
       bio: 'Yousef leads product strategy and delivery at ORVANU, helping transform complex business challenges into practical digital solutions. His experience spans logistics, marketplaces, B2B platforms, and operational software, with a focus on product discovery, strategy, roadmaps, and cross-functional collaboration.',
       expertise: [
         'Product Strategy',
-        'Product Management',
-        'Digital Product Development',
-        'Business Requirements',
-        'Product Roadmaps',
-        'B2B Platforms'
+        'Digital Marketplaces',
+        'E-commerce Platforms',
+        'Logistics & Delivery Tech',
+        'Fulfillment & Warehousing',
+        'Same-Day & On-Demand Delivery',
+        'B2B Platforms',
+        '0→1 Product Development'
       ],
       initials: 'YP',
       photo: 'assets/team/yousef.jpg',
@@ -30,12 +32,14 @@
       title: 'Full-Stack Engineer',
       bio: 'Saeed is a full-stack engineer specializing in modern web application development. He works across frontend and backend technologies to build reliable, scalable, and user-friendly software products, with experience in React, Next.js, and TypeScript.',
       expertise: [
-        'Full-Stack Development',
-        'React',
-        'Next.js',
-        'TypeScript',
-        'Web Applications',
-        'Software Engineering'
+        'Full-Stack Engineering',
+        'React & Next.js',
+        'TypeScript & Node.js',
+        'Backend API Development',
+        'Real-Time Applications',
+        'Fintech Platforms',
+        'React Native',
+        'Scalable Web Architecture'
       ],
       initials: 'SN',
       photo: 'assets/team/saeed.jpg',
@@ -46,12 +50,14 @@
       title: 'Full-Stack Engineer',
       bio: 'Mohammadreza is a full-stack engineer focused on building robust business applications and digital platforms. He works with modern frontend and backend technologies, including Next.js, NestJS, and TypeScript, to deliver maintainable software solutions.',
       expertise: [
-        'Full-Stack Development',
-        'Next.js',
-        'NestJS',
-        'TypeScript',
-        'Backend Development',
-        'Business Applications'
+        'Full-Stack Engineering',
+        'React & Next.js',
+        'NestJS & TypeScript',
+        'Fintech Applications',
+        'Business Dashboards',
+        'Admin Panels & Internal Tools',
+        'AI-Powered Web Applications',
+        'Data Visualization'
       ],
       initials: 'MA',
       photo: 'assets/team/mohammadreza.jpg',
