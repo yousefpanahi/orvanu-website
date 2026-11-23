@@ -9,7 +9,7 @@
 
   // Cloudflare Turnstile site key (public). Leave empty to render no widget;
   // the server requires a valid token whenever TURNSTILE_SECRET_KEY is set.
-  const TURNSTILE_SITEKEY = '';
+  const TURNSTILE_SITEKEY = '0x4AAAAAAGPeAoSwkEhoDlOT';
 
   const form = document.querySelector('#inquiry-form');
   if (!form) return;
