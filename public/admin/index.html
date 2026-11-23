@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="color-scheme" content="light" />
+  <title>Inquiries · ORVANU</title>
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">ORVANU<span>Inquiries</span><span class="dot">·</span></div>
+      <div class="session" id="session-box" hidden>
+        <span>Signed in as <strong id="session-email"></strong></span>
+        <button class="btn ghost small" id="signout" type="button">Sign out</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Sign-in ------------------------------------------------------- -->
+      <section id="login-view" hidden aria-labelledby="login-title">
+        <div class="login-card">
+          <h1 id="login-title">Sign in</h1>
+          <p class="lede">This area is restricted to ORVANU administrators. A one-time code is sent to your email.</p>
+
+          <form id="email-form" novalidate>
+            <label for="login-email">Email address</label>
+            <input class="input" id="login-email" name="email" type="email" autocomplete="username"
+                   inputmode="email" placeholder="you@example.com" required />
+            <button class="btn block" id="email-submit" type="submit">Send sign-in code</button>
+          </form>
+
+          <form id="code-form" hidden novalidate>
+            <label for="login-code">Six-digit code</label>
+            <input class="input code" id="login-code" name="code" type="text" inputmode="numeric"
+                   autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" placeholder="000000" required />
+            <button class="btn block" id="code-submit" type="submit">Sign in</button>
+            <button class="btn ghost block" id="code-resend" type="button">Use a different email</button>
+          </form>
+
+          <p class="status" id="login-status" role="status" hidden></p>
+          <p class="login-note">Codes expire after 10 minutes and work once. Sessions end after 12 hours.
+            Unauthorized access attempts are logged.</p>
+        </div>
+      </section>
+
+      <!-- Dashboard ----------------------------------------------------- -->
+      <section id="dash-view" hidden aria-label="Inquiries">
+        <div class="toolbar">
+          <input class="input search" id="search" type="search" placeholder="Search name, email, company, text or reference" aria-label="Search inquiries" />
+          <select id="sort" aria-label="Sort by date">
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+          </select>
+          <button class="btn ghost small" id="refresh" type="button">Refresh</button>
+        </div>
+
+        <div class="tabs" id="tabs" role="group" aria-label="Filter by status"></div>
+
+        <div class="layout">
+          <div>
+            <div class="list" id="list" aria-live="polite"></div>
+            <div class="pager" id="pager" hidden>
+              <button class="btn ghost small" id="prev" type="button">Previous</button>
+              <span id="page-label"></span>
+              <button class="btn ghost small" id="next" type="button">Next</button>
+            </div>
+            <p class="detail-foot" id="list-status" role="status"></p>
+          </div>
+
+          <aside class="detail" id="detail" hidden aria-live="polite"></aside>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/admin/admin.js"></script>
+</body>
+</html>
