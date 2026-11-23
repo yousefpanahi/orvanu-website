@@ -21,9 +21,10 @@ ORVANU is an early-stage **international B2B software development and product en
 - **GitHub repo:** `yousefpanahi/orvanu-website`, branch `main`, deploy workflow `.github/workflows/deploy.yml`.
 - **Services:** (1) Custom software development, (2) Dedicated engineering teams, (3) MVP & SaaS product development.
 - **Team:**
-  - Yousef Panahi — Product Strategy & Leadership. Senior PM; logistics, marketplaces, operational platforms. **He is not a software developer** — explain technical decisions in practical business language.
-  - Saeed Najafi — Engineering & Frontend Lead. React, Next.js, TypeScript, frontend architecture.
-  - Mohammadreza Akbari — Full-Stack Engineer. Next.js, NestJS, TypeScript, backend systems, dashboards, fintech-related software.
+  - Yousef Panahi — Director of Product. Leads product strategy and delivery; logistics, marketplaces, B2B platforms, operational software. **He is not a software developer** — explain technical decisions in practical business language.
+  - Saeed Najafi — Full-Stack Engineer. Modern web applications; React, Next.js, TypeScript.
+  - Mohammadreza Akbari — Full-Stack Engineer. Business applications; Next.js, NestJS, TypeScript.
+  - Team content (bios, expertise tags, photo paths, LinkedIn URLs) lives in the `TEAM` array in `public/script.js`. LinkedIn buttons stay hidden while URLs are empty. Photos: drop `yousef.jpg`, `saeed.jpg`, `mohammadreza.jpg` into `public/assets/team/` (4:5 portrait) and set the `photo` field.
 - **Markets:** Netherlands, wider Europe, UAE, Oman, Gulf region.
 - **Engineering team is based in Iran**; customers are international.
 
