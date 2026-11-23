@@ -1,0 +1,59 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Allow only one deployment at a time; keep the latest queued.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # The first push can run before the Cloudflare secrets exist.
+      # In that case the job reports success with a notice instead of a red failure.
+      - name: Check deployment secrets
+        id: check
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CF_TOKEN" ] || [ -z "$CF_ACCOUNT" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Skipping deploy - add CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID in Settings > Secrets and variables > Actions, then re-run this workflow."
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Deploy to Cloudflare Pages
+        if: steps.check.outputs.ready == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public --project-name=orvanu
+
+      - name: Verify live deployment
+        if: steps.check.outputs.ready == 'true'
+        run: |
+          sleep 15
+          STATUS=$(curl -s -o /tmp/site.html -w "%{http_code}" https://orvanu.pages.dev/)
+          echo "orvanu.pages.dev returned HTTP $STATUS"
+          if [ "$STATUS" != "200" ]; then
+            echo "Deployment verification failed: expected HTTP 200" >&2
+            exit 1
+          fi
+          if ! grep -q "ORVANU" /tmp/site.html; then
+            echo "Deployment verification failed: ORVANU content not found" >&2
+            exit 1
+          fi
+          echo "Deployment verified: site is live and serving ORVANU content."
