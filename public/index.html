@@ -25,6 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
+  <script src="form.js" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -70,7 +71,7 @@
           <h1 id="hero-title">Good ideas deserve <span>great software.</span></h1>
           <p class="hero-lede">We bring product thinking and hands-on engineering together to turn complex business needs into digital products that feel effortless.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="mailto:orvanutech@gmail.com?subject=Let%27s%20discuss%20a%20project%20with%20ORVANU">Discuss your project
+            <a class="button button-primary" href="#inquiry">Discuss your project
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
             </a>
             <a class="button button-ghost" href="#services">What we do <span aria-hidden="true">↗</span></a>
@@ -366,7 +367,7 @@
             <h3>Have a business challenge in mind?</h3>
             <p>Let's explore what the right software could make possible.</p>
           </div>
-          <a class="button button-primary" href="mailto:orvanutech@gmail.com?subject=Hello%20ORVANU%20%E2%80%94%20Project%20inquiry">Discuss Your Project
+          <a class="button button-primary" href="#inquiry">Discuss Your Project
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
           </a>
         </div>
@@ -512,6 +513,108 @@
           <div class="contact-glyph">↗</div>
           <span class="contact-card-caption">A good conversation is a great place to start.</span>
           <a href="mailto:orvanutech@gmail.com">orvanutech@gmail.com</a>
+        </div>
+      </div>
+      <div class="container">
+        <div class="inquiry-panel" id="inquiry">
+          <div class="inquiry-head">
+            <div class="eyebrow purple-eyebrow">PROJECT INQUIRY</div>
+            <h3 class="inquiry-title" id="inquiry-title">Let's build something great.</h3>
+            <p class="inquiry-lede">Tell us a little about your project. We'll explore how ORVANU can help.</p>
+          </div>
+          <form class="inquiry-form" id="inquiry-form" action="/api/inquiry" method="post" enctype="multipart/form-data" novalidate aria-labelledby="inquiry-title">
+            <div class="field-grid">
+              <div class="field">
+                <label for="f-name">Full name <span class="req" aria-hidden="true">*</span></label>
+                <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-error" />
+                <p class="field-error" id="f-name-error" role="alert" hidden></p>
+              </div>
+              <div class="field">
+                <label for="f-email">Email address <span class="req" aria-hidden="true">*</span></label>
+                <input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="f-email-error" />
+                <p class="field-error" id="f-email-error" role="alert" hidden></p>
+              </div>
+              <div class="field">
+                <label for="f-phone">WhatsApp number <span class="opt">Optional</span></label>
+                <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+31 6 12345678" aria-describedby="f-phone-help f-phone-error" />
+                <p class="field-help" id="f-phone-help">Include your country code.</p>
+                <p class="field-error" id="f-phone-error" role="alert" hidden></p>
+              </div>
+              <div class="field">
+                <label for="f-company">Company name <span class="opt">Optional</span></label>
+                <input id="f-company" name="company" type="text" autocomplete="organization" />
+              </div>
+              <div class="field">
+                <label for="f-service">Service needed</label>
+                <select id="f-service" name="service" aria-describedby="f-service-error">
+                  <option value="">Select a service</option>
+                  <option>Custom Software Development</option>
+                  <option>Dedicated Engineering Team</option>
+                  <option>MVP &amp; SaaS Product Development</option>
+                  <option>Not Sure Yet</option>
+                </select>
+                <p class="field-error" id="f-service-error" role="alert" hidden></p>
+              </div>
+              <div class="field">
+                <label for="f-budget">Estimated project budget <span class="opt">Optional</span></label>
+                <select id="f-budget" name="budget" aria-describedby="f-budget-error">
+                  <option value="">Select budget range</option>
+                  <option>Under €5,000</option>
+                  <option>€5,000 – €15,000</option>
+                  <option>€15,000 – €50,000</option>
+                  <option>€50,000+</option>
+                </select>
+                <p class="field-error" id="f-budget-error" role="alert" hidden></p>
+              </div>
+              <div class="field field-wide">
+                <label for="f-timeline">Project timeline <span class="opt">Optional</span></label>
+                <select id="f-timeline" name="timeline" aria-describedby="f-timeline-error">
+                  <option value="">When would you like to launch?</option>
+                  <option>Within 1 month</option>
+                  <option>1–3 months</option>
+                  <option>3–6 months</option>
+                  <option>Flexible / Not sure yet</option>
+                </select>
+                <p class="field-error" id="f-timeline-error" role="alert" hidden></p>
+              </div>
+              <div class="field field-wide">
+                <label for="f-description">Project description <span class="req" aria-hidden="true">*</span></label>
+                <textarea id="f-description" name="description" rows="5" required placeholder="Briefly describe your idea, business challenge, or requirements..." aria-describedby="f-description-error"></textarea>
+                <p class="field-error" id="f-description-error" role="alert" hidden></p>
+              </div>
+              <div class="field field-wide">
+                <label for="f-files">Project attachments <span class="opt">Optional</span></label>
+                <div class="file-drop" id="file-drop">
+                  <input class="file-input" id="f-files" name="files" type="file" multiple accept=".pdf,.docx,.xlsx,.png,.jpg,.jpeg" aria-describedby="f-files-help f-files-error" />
+                  <span class="file-drop-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+                  </span>
+                  <span class="file-drop-title">Drop files here or <span class="file-drop-link">browse</span></span>
+                  <span class="file-drop-help">PDF, DOCX, XLSX, PNG or JPG · up to 3 files · 10 MB each</span>
+                </div>
+                <ul class="file-list" id="file-list" aria-live="polite"></ul>
+                <p class="field-error" id="f-files-error" role="alert" hidden></p>
+                <p class="field-help" id="f-files-help">Briefs, specifications, wireframes — anything that helps us understand the project.</p>
+              </div>
+            </div>
+            <div class="inquiry-trap" aria-hidden="true">
+              <label for="f-website">Leave this field empty</label>
+              <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+            <div class="turnstile-slot" id="turnstile-slot"></div>
+            <div class="inquiry-actions">
+              <button class="button button-primary inquiry-submit" id="inquiry-submit" type="submit">Send Project Inquiry</button>
+              <p class="inquiry-hint">Fields marked <span class="req" aria-hidden="true">*</span> are required. Need to talk first? <a href="mailto:orvanutech@gmail.com">Email us directly</a>.</p>
+            </div>
+            <p class="inquiry-privacy">We use these details only to reply to your inquiry — no mailing lists, no sharing. Attachments are stored privately and access links expire after 7 days. A WhatsApp number, if given, is used for this conversation only.</p>
+            <div class="inquiry-status" id="inquiry-status" role="status" aria-live="polite" hidden></div>
+          </form>
+          <div class="inquiry-success" id="inquiry-success" hidden>
+            <span class="inquiry-success-icon" aria-hidden="true">✓</span>
+            <h4>Your inquiry is on its way</h4>
+            <p>Thanks for the details. We'll reply to the email address you gave us.</p>
+            <p class="inquiry-ref">Reference: <strong id="inquiry-ref"></strong></p>
+          </div>
         </div>
       </div>
     </section>
