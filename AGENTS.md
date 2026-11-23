@@ -4,6 +4,8 @@
 
 ORVANU is an early-stage **international B2B software development and product engineering company** (brand: *Software & Product Engineering*). This workspace holds the company website and its deployment pipeline.
 
+**Read `docs/PROJECT-LOG.md` first.** It is the running record of what is live, what was built and why, the session history, known bugs already fixed, local dev/test commands, deployment tooling and the open owner tasks. `AGENTS.md` holds the rules and confirmed facts; the log holds the working state. Append a dated entry to its §6 when you finish meaningful work.
+
 ## Hard rules (never violate)
 
 - **Never fabricate** clients, testimonials, revenue, partnerships, certifications, case studies, or team credentials.
