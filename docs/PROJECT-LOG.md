@@ -183,6 +183,24 @@ until manually deleted. `purge` exists for scheduled/ manual cleanup.
 - Deployed: PR #8 → `01ddcfa` → workflow run #10 **SUCCESS**; live HTML contains
   `about-facts`, `about-chips`, no `about-values`.
 
+### Session D — 24 Nov 2026: AI service, experience, footer HQ, team
+
+- Added the AI solutions service card and replaced §04 with four anonymised
+  SELECTED EXPERIENCE cards (team work elsewhere, no client names or endorsement).
+  Deployed via PR #12, workflow run #14 **SUCCESS**; old concept cards removed.
+- Footer CONNECT column now carries HEADQUARTERS / Utrecht, Netherlands with a
+  15 px pin. No street address, no map; existing email/social links untouched.
+- Team: Mohammad Behbahani added second (AI Engineer & Data Scientist, exact
+  LinkedIn URL), distinct from Mohammadreza Akbari. Four-column desktop grid,
+  horizontal rows below 1200 px, stacked cards below 620 px. New 4:5 portraits
+  for Yousef and Mohammad; the stated team count deliberately stays at 15.
+- Image generation was unavailable (invalid credential), so experience visuals
+  are hand-built SVG; markup keeps slots for real 16:10 artwork later.
+- Deployment lesson: a Wrangler-managed Pages project wipes dashboard-set plain
+  vars on each deploy. `[vars]` and the D1 binding must stay in `wrangler.toml`.
+- Verified: `node --check`, four photos at 576×720, no horizontal overflow at
+  1440/1024/390 px, no site-code console errors.
+
 ---
 
 ## 7. Bugs found and fixed (so they are not re-introduced)

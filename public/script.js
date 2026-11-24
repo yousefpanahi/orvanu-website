@@ -24,8 +24,26 @@
         '0→1 Product Development'
       ],
       initials: 'YP',
-      photo: 'assets/team/yousef.jpg',
+      photo: 'assets/team/yousef.jpg?v=2',
       linkedin: 'https://www.linkedin.com/in/yousef-panahi'
+    },
+    {
+      name: 'Mohammad Behbahani',
+      title: 'AI Engineer & Data Scientist',
+      bio: 'Mohammad specializes in AI engineering, data science, and optimization, combining machine learning research with practical software development. His experience includes building RAG-powered AI systems, intelligent workflows, predictive models, and cloud-based applications, with a background in e-commerce analytics and supply chain optimization.',
+      expertise: [
+        'AI Engineering',
+        'Machine Learning',
+        'RAG & Agentic AI',
+        'Data Science',
+        'Predictive Analytics',
+        'Optimization',
+        'Python & FastAPI',
+        'Cloud & MLOps'
+      ],
+      initials: 'MB',
+      photo: 'assets/team/mohammad-behbahani.jpg',
+      linkedin: 'https://www.linkedin.com/in/mohammad-behbahani-85958775/'
     },
     {
       name: 'Saeed Najafi',
@@ -123,7 +141,11 @@
     title.className = 'team-role';
     title.textContent = member.title;
 
-    heading.append(name, title);
+    const identity = document.createElement('div');
+    identity.className = 'team-id';
+    identity.append(name, title);
+
+    heading.appendChild(identity);
 
     if (member.linkedin) {
       const link = document.createElement('a');
