@@ -236,7 +236,7 @@
   const setLoading = (loading) => {
     if (!submitButton) return;
     submitButton.disabled = loading;
-    submitButton.textContent = loading ? 'Sending…' : 'Send Project Inquiry';
+    submitButton.textContent = loading ? 'Sending…' : 'Schedule a Discovery Call';
   };
 
   form.addEventListener('submit', async (event) => {

@@ -24,12 +24,12 @@ Related documents:
 | Hosting | Cloudflare Pages, project `orvanu`, Direct Upload via Wrangler |
 | Repository | `yousefpanahi/orvanu-website`, branch `main` (public) |
 | Deploy trigger | push to `main` → `.github/workflows/deploy.yml` → `wrangler pages deploy public --project-name=orvanu` |
-| Deployed commit | `01ddcfa` — "Rewrite the About section with facts, expertise and experience" |
-| Previous deploys | `b2ed250` (inquiry backend + dashboard, run #9 ✓), `01ddcfa` (About rewrite, run #10 ✓) |
+| Deployed commit | PR from `feat/shorten-page-and-discovery-cta` — "Remove How We Work, refine inquiry CTA and optional service" |
+| Previous deploys | PR #19 (run #21 ✓), PR #17 (`ae57c16`, run #19 ✓), PR #18 (run #20 ✓), `01ddcfa` (About rewrite, run #10 ✓) |
 
 What is live right now:
 
-- Full public site (hero, services, approach, concept work, about, team, contact, inquiry form).
+- Full public site (hero, services, solutions & expertise, selected projects, about, team, contact, inquiry form).
 - `POST /api/inquiry` — validates, stores to D1 + R2, sends email, returns an `ORV-YYYYMMDD-xxxxxxxx` reference.
 - `GET /api/file` — expiring signed download links used by the notification email.
 - `/admin` — private inquiry dashboard (email OTP sign-in), plus `/api/admin/*`.
@@ -57,7 +57,7 @@ nothing works either. See §12.
 
 ```
 public/
-  index.html      single-page site (sections 01–07, id="inquiry" form, id="about")
+  index.html      single-page site (sections 01–06, id="inquiry" form, id="about")
   styles.css      all styles (minified single-line blocks per section)
   script.js       nav, scroll reveal, TEAM array rendering, year
   form.js         inquiry form: validation, file list, drag & drop, Turnstile, submit
@@ -249,6 +249,18 @@ until manually deleted. `purge` exists for scheduled/ manual cleanup.
 - Deployed with Session G: PR #17 → `ae57c16` → workflow run #19 **SUCCESS**.
   Live HTML shows `Projects` in both the nav and the footer.
 
+### Session G2 — 24 Nov 2026: team photo replacement (local preview)
+
+- Replaced `public/assets/team/mohammadreza.jpg` with the owner-supplied
+  `Professional Bearded Man Portrait.png`, centre-cropped from square to the
+  existing 4:5 portrait format and exported as a 576×720, 44 KB JPEG. No other
+  team data or card markup changed; `photo` in the `TEAM` array already points
+  to this path.
+- Previous image backed up in the temp folder. Local preview at `#team` confirms
+  the image loads at 576×720 with no horizontal overflow. **Not deployed** —
+  this is a local asset change; no branch push or production update has been
+  made for it.
+
 ### Session G — 24 Nov 2026: Vitelize card revision (deployed)
 
 - Revised the existing first featured card in `public/index.html` with the
@@ -280,6 +292,42 @@ until manually deleted. `purge` exists for scheduled/ manual cleanup.
   absent. (The proxy rewrites `#work` hrefs to absolute URLs, so live checks
   match on the rendered `>Projects</a>` text instead.)
 
+### Session H — 24 Nov 2026: shorter page + inquiry CTA refinements (deployed)
+
+- Removed the `.principle` philosophy band and the whole `.approach` /
+  `02 / HOW WE WORK` section: the belief sentence, `LESS NOISE. MORE MOMENTUM.`,
+  the “A partner from idea to impact.” heading, its supporting paragraph and the
+  four Understand / Shape / Build / Grow steps. Their graphics and all CSS for
+  those blocks (including responsive overrides) were deleted too.
+- Removed Approach from the shared desktop/mobile nav and the footer. Final nav
+  is **Services | Projects | Team | About | Let's talk**. All original section
+  ids and scroll targets were preserved (`#services`, `#capabilities`, `#work`,
+  `#about`, `#team`, `#contact`, `#inquiry`, `#top`).
+- Renumbered the remaining eyebrows exactly: `01 / SERVICES`,
+  `02 / SOLUTIONS & EXPERTISE`, `03 / SELECTED PROJECTS`, `04 / ABOUT ORVANU`,
+  `05 / MEET THE TEAM`, `06 / LET'S CONNECT`. No replacement content was added;
+  project cards, team profiles, services and form fields are untouched.
+- Inquiry refinements: submit button now reads exactly **Schedule a Discovery
+  Call** in `public/index.html` and after the loading reset in `public/form.js`;
+  the **Service needed** label now carries `<span class="opt">Optional</span>`.
+  Backend validation still permits an empty service value, so no API change was
+  needed.
+- Verification: `_inspect/verify-section-removal.mjs`,
+  `verify-discovery-cta.mjs`, `verify-inquiry-fields.mjs` and
+  `verify-vitelize-revision.mjs` all pass; `node --check` passes for both public
+  JS files. Headless Chrome at 1440/390 px confirms section order, exact nav and
+  footer labels, exact eyebrows, absent deleted sections/headings, `#work`
+  scroll landing at the 86 px sticky-header offset, optional tag, purple CTA
+  styling, mobile menu close-on-click, zero horizontal overflow and no site
+  console errors.
+- The first browser assertion used `bodyText.includes('Grow')` and falsely failed
+  on the unrelated word “Growth”. It now checks exact removed text and DOM
+  markers; a deliberate `<h3>Grow</h3>` fixture fails the assertion correctly.
+- Local preview opened in the Review pane before deployment.
+- Deployed after the owner's `deploy all` approval: PR from
+  `feat/shorten-page-and-discovery-cta`; live verification is recorded in the
+  final session notes.
+
 ---
 
 ## 7. Bugs found and fixed (so they are not re-introduced)
@@ -291,6 +339,7 @@ until manually deleted. `purge` exists for scheduled/ manual cleanup.
 | Second branch push silently deleted the first commit's files | `push-branch.js` always built its tree from `main` | it now bases on the branch's own tree when the branch exists |
 | Detail pane never showed the current status | `renderDetail` had no pill; update code looked for `.pill` inside the pane | status pill added next to the name and updated on save |
 | PR body mentioned an unrelated "team section rebuild" | hard-coded string in `merge-pr.js` | body now derives from the title |
+| Browser "removed content absent" failed on site copy containing “Growth” | assertion used `bodyText.includes('Grow')` | assertion now checks exact removed headings/text plus `#approach`, `.principle`, `.timeline-step`; a deliberate `<h3>Grow</h3>` fixture fails it correctly |
 
 Test-only note: the form suite sends a unique synthetic `cf-connecting-ip` per
 case, because Cloudflare sets that header in production and the endpoint limits
