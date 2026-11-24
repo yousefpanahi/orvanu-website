@@ -1,0 +1,59 @@
+<article class="experience-card" data-sector="ai" data-anon="true">
+            <div class="exp-visual">
+              <span class="exp-visual-label">AI / CUSTOMER SUPPORT</span>
+              <img class="exp-art" src="assets/experience/ai-support.jpg" alt="Illustrative workflow for an AI customer support chatbot" width="1120" height="700" loading="lazy" decoding="async">
+            </div>
+            <div class="exp-body">
+              <span class="exp-sector">AI · Customer support</span>
+              <h3>AI Customer Support Chatbot</h3>
+              <p>Designed and launched an AI chatbot to improve customer support efficiency for a large-scale digital platform serving 20+ million users and handling approximately 3,000 daily support calls — streamlining first-line support, reducing pressure on human agents, and improving response speed.</p>
+              <div class="service-tags">
+                <span>AI chatbot</span><span>Support automation</span><span>Conversational AI</span><span>Large-scale platforms</span><span>CX improvement</span>
+              </div>
+            </div>
+          </article>
+---BLOCK---
+<article class="experience-card" data-sector="ai" data-anon="true">
+            <div class="exp-visual">
+              <span class="exp-visual-label">AI / RECOMMENDATION</span>
+              <img class="exp-art" src="assets/experience/ai-travel.jpg" alt="Illustrative travel recommendation workspace" width="1120" height="700" loading="lazy" decoding="async">
+            </div>
+            <div class="exp-body">
+              <span class="exp-sector">AI · Travel technology</span>
+              <h3>AI Travel Recommendation System</h3>
+              <p>Developed an AI-based recommendation system for a tourism company, delivering more relevant travel suggestions from historical behavior, demand trends, and customer feedback across hotels, flights, and travel services — improving personalization and decision quality.</p>
+              <div class="service-tags">
+                <span>Recommendation engine</span><span>Travel tech</span><span>AI personalization</span><span>Data-driven decisions</span>
+              </div>
+            </div>
+          </article>
+---BLOCK---
+<article class="experience-card" data-sector="logistics" data-anon="true">
+            <div class="exp-visual">
+              <span class="exp-visual-label">LOGISTICS / 0 → 1 LAUNCH</span>
+              <img class="exp-art" src="assets/experience/scheduled-delivery.jpg" alt="Illustrative connected delivery platform ecosystem" width="1120" height="700" loading="lazy" decoding="async">
+            </div>
+            <div class="exp-body">
+              <span class="exp-sector">Logistics · Product ecosystem</span>
+              <h3>Scheduled Delivery Business Line</h3>
+              <p>Led the launch of a new delivery model for a major digital platform with 50+ million active users, expanding from on-demand into scheduled delivery. Built from 0 to 1 as a connected ecosystem — customer panel, admin panel, rider app, and warehouse app — designed to scale toward 1 million daily orders.</p>
+              <div class="service-tags">
+                <span>0→1 product launch</span><span>Logistics tech</span><span>Scheduled delivery</span><span>Marketplace operations</span>
+              </div>
+            </div>
+          </article>
+---BLOCK---
+<article class="experience-card" data-sector="operations" data-anon="true">
+            <div class="exp-visual">
+              <span class="exp-visual-label">OPERATIONS / WAREHOUSE</span>
+              <img class="exp-art" src="assets/experience/yard-management.jpg" alt="Illustrative warehouse and yard operations view" width="1120" height="700" loading="lazy" decoding="async">
+            </div>
+            <div class="exp-body">
+              <span class="exp-sector">Operations · Marketplace</span>
+              <h3>Yard Management System</h3>
+              <p>Designed and launched a yard management system for a large online marketplace, improving seller experience and operational efficiency across hubs and warehouses — streamlining inbound coordination and warehouse receiving for an ecosystem of roughly 200,000 sellers.</p>
+              <div class="service-tags">
+                <span>Yard management</span><span>Warehouse operations</span><span>Seller experience</span><span>Operational efficiency</span>
+              </div>
+            </div>
+          </article>
