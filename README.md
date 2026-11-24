@@ -7,7 +7,7 @@ Source code and deployment pipeline for [https://orvanu.pages.dev/](https://orva
 | Path | Purpose |
 |------|---------|
 | `public/` | The website. This folder is deployed as-is to Cloudflare Pages. |
-| `public/index.html` | Single-page site (hero, services, approach, capabilities, work, about, team, contact). |
+| `public/index.html` | Single-page site (hero, services, capabilities, work, about, team, contact). |
 | `public/assets/` | Brand assets: logo symbol, favicons, OG preview image. Do not replace the logo without approval. |
 | `public/_headers` | Cloudflare Pages response headers (security headers). |
 | `public/robots.txt`, `public/sitemap.xml` | Basic SEO files. Update the domain everywhere when a custom domain is connected. |
