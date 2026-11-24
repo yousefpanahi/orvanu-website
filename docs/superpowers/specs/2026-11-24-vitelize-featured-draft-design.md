@@ -57,6 +57,36 @@ client work until the team’s exact contribution is confirmed.
   by a short badge near the title: `Draft · public-site reference`. The section
   note keeps the full draft, unconfirmed-contribution and no-client-claim wording.
 
+## Revision 2 (owner-directed, 24 November 2026)
+
+The owner supplied a replacement copy deck for the same first featured card.
+The card structure, split layout, responsive behaviour, existing visual and
+section note stay as approved above; only the card text, category, tags and
+three new business-fact statistics change.
+
+- Visual: **unchanged** — keep `public/assets/experience/vitelize-health.jpg`
+  (owner-approved Healix concept image) and the
+  `Concept reference — not a Vitelize screenshot` caption. Keep the short
+  `Draft · public-site reference` badge and the full section note.
+- Category: `HealthTech · United States`.
+- Title: `Vitelize Health — Digital Healthcare Platform`.
+- Description (single paragraph, verbatim): `A U.S.-based digital health experience connecting physician-guided metabolic care, personalized fitness, and nutrition services. The platform helps users explore health programs, discover participating locations, and connect with healthcare and wellness partners.`
+- Three compact statistics beneath the description, in this order:
+  `USA — Market`, `9 — Partner Locations`, `2 — U.S. States`. Source:
+  `https://www.vitelizehealth.com/partner-network/` (published partner
+  directory: 8 Colorado + 1 Oklahoma = 9 locations in 2 states). Present them
+  strictly as published partner-network facts — never as customers, patients,
+  results or development achievements.
+- Tags in order: `HealthTech`, `Digital Healthcare`, `Partner Discovery`,
+  `Web Platform`.
+- CTA unchanged: `View Live Website` → `https://www.vitelizehealth.com/`.
+- The owner waived the pre-deployment confirmation of team contribution. No
+  contribution, client, clinical or engineering claim may be added. The visual
+  and draft labelling remain because the referenced artwork is a third-party
+  concept, not a Vitelize screenshot.
+- Implementation must be on a feature branch with a localhost preview and no
+  deployment until the owner explicitly approves the result.
+
 ## Approaches considered
 
 1. **Full-width featured card first (chosen).** A split image/text article spans

@@ -46,6 +46,12 @@ button,a{font:inherit}a{color:inherit;text-decoration:none}button{cursor:pointer
 .experience-feature .exp-body{padding:28px 30px}
 .experience-feature .exp-subtitle{font-size:15px;font-weight:650;color:#50485c;margin:12px 0 10px}
 .experience-feature .exp-description p{font-size:14px;color:#6e6878;line-height:1.7;margin:0 0 10px}
+.exp-stats{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;margin-top:14px;padding:12px 0;border-top:1px solid #e8e3ef;border-bottom:1px solid #e8e3ef}
+.exp-stats>div{flex:1 1 0;min-width:88px}
+.exp-stats strong{display:block;font-size:21px;font-weight:800;letter-spacing:-.8px;color:#581acc;line-height:1.1}
+.exp-stats span{display:block;margin-top:3px;font-size:9px;font-weight:750;letter-spacing:.06em;text-transform:uppercase;color:#6e6878}
+.exp-stats a{flex-basis:100%;font-size:9px;color:#7f40e9;text-decoration:none;margin-top:2px}
+.exp-stats a:hover{text-decoration:underline}
 .experience-feature .service-tags{margin-top:auto;padding-top:12px}
 .experience-feature .exp-link{margin-top:18px;align-self:flex-start;background:#581acc;color:#fff;border:1px solid #581acc}
 .experience-feature .exp-link:hover{background:#7e37ef;border-color:#7e37ef}
@@ -53,7 +59,7 @@ button,a{font:inherit}a{color:inherit;text-decoration:none}button{cursor:pointer
 .exp-illustration-note{position:relative;display:block;margin-top:8px;font-size:9px;letter-spacing:.06em;color:#655f72}
 @media(max-width:900px){.experience-grid{grid-template-columns:1fr}.experience-feature{grid-template-columns:1fr}.experience-cta{flex-direction:column;align-items:flex-start;gap:16px;padding:24px}}
 @media(max-width:790px){.experience-cta h3{font-size:18px}}
-@media(max-width:480px){.experience-feature .exp-body{padding:22px 20px 24px}.experience-feature .exp-visual{padding:14px 14px 0}.experience-feature .exp-subtitle{font-size:14px}}
+@media(max-width:480px){.experience-feature .exp-body{padding:22px 20px 24px}.experience-feature .exp-visual{padding:14px 14px 0}.experience-feature .exp-subtitle{font-size:14px}.exp-stats{gap:8px;margin-top:12px;padding:10px 0}.exp-stats strong{font-size:18px}}
 
 /* ---- Meet the team ---- */
 .team{background:#faf9fc;border-block:1px solid #f1edf7}
