@@ -1,0 +1,27 @@
+# SDD ledger — plan: docs/superpowers/plans/2026-11-24-vitelize-featured-draft.md
+
+Ruling: no Git worktree available — the workspace is not a Git repo and no Git binary is installed — so all work stays local and no shared branch or deploy is touched until the user approves — cost: no isolated branch checkpoint until the final feature-branch push.
+Ruling: static HTML has no runtime API, so the Task 1 script parses the rendered HTML/CSS source as the observable contract, with real browser DOM assertions in Task 5 — cost: a source-format refactor could fail the script without changing behavior; titles, paths, link and copied text are pinned to prevent drift.
+Pre-flight: Task 2 produces `public/assets/experience/vitelize-health.jpg`; Tasks 1 and 3 consume that exact path — aligned.
+Pre-flight: Task 3 produces `.experience-feature`, `.exp-subtitle`, `.exp-description`, `.exp-link`, `.exp-draft-note`, `.exp-illustration-note`; Task 4 consumes those class hooks; Task 1 asserts them — aligned.
+Pre-flight: Task 4 produces `.experience-feature{grid-column:1/-1` and the 900 px stack rule; Task 1 asserts both rules; Task 5 checks rendered layout — aligned.
+Pre-flight: Task 5 consumes Tasks 2–4; Task 6 consumes passing Task 1 and Task 5 results — aligned.
+Task 1: complete (test baseline: `node _inspect/verify-vitelize-draft.mjs` → FAIL as expected: featured article marker missing).
+Task 2: complete (`node -e ...vitelize-health.jpg` → `ff d8 53KB`).
+Ruling: image generation tool failed with Invalid credential — used the plan's local HTML/CSS/SVG fallback and rasterized a 1120×700 illustrative JPEG — cost: the visual is code-composed rather than model-generated, but remains original and unbranded.
+Ruling: user separately asked to replace the AI support card image with the supplied `Cinematic Customer Support Office Dashboard.png` — cropped the supplied image to 16:10 and overwrote `public/assets/experience/ai-support.jpg`, keeping a temp backup — cost: the earlier user-supplied AI support visual is replaced in the draft.
+Task 3: complete (`node _inspect/verify-vitelize-draft.mjs` → FAIL only on missing `.experience-feature` CSS, as expected).
+Task 4: complete (`node _inspect/verify-vitelize-draft.mjs` → all checks PASS).
+Ruling: the 900 px CSS check failed because the test cut the media block at the first inner `}` — fixed the test with balanced-brace extraction rather than changing valid CSS — cost: none to production behavior; the test now checks the whole media rule.
+Task 5: complete (`node --check public/script.js` → 0; CDP checks at 1440/1024/390 → 5 cards, feature first, image 1120×700, external link correct, four old sources unchanged, overflow 0, side-by-side at desktop/tablet and stacked at mobile, no console errors).
+Task 6: complete (log entry appended; local draft ready; no branch push, PR, merge or deploy).
+
+Post-review fixes (one pass):
+Ruling: reviewer's Important findings were accepted — the ≤480px featured overrides were dead because they preceded equal-specificity base rules; moved them into a media block after the base rules and added 390px computed-style assertions — cost: none; mobile padding/font now take effect.
+Ruling: reviewer's test-coverage finding was accepted — strengthened `verify-vitelize-draft.mjs` to collect all failures, accept an HTML override, pin four full production article blocks, assert description order, decode JPEG dimensions, assert effective 480px CSS, CTA styling, badge styling and spec exceptions — cost: source-format refactors may need test updates, but drift is now caught. Verified negative case: mutated HTML fails only `four existing cards are unchanged against the production baseline`.
+Ruling: reviewer's CTA and draft-label findings were re-graded from Minor to Important — added explicit purple background/white text/border to `.experience-feature .exp-link` and a visible `Draft · public-site reference` badge near the title — cost: small visual change; integrity wording is now easier to notice.
+Ruling: owner directed the shared Healix telemedicine Dribbble image to replace the locally composed illustration — centre-cropped to 1120×700 JPEG (186 KB), labelled as a concept reference, and backed up the previous image in temp — cost: uses the owner-approved shared design reference rather than an original composition; no Vitelize branding or real screenshot is implied.
+Ruling: owner asked to remove the long draft sentence — removed it from the card but kept the short badge near the title and the full draft/unconfirmed/no-client-claim wording in the section note, per project hard rules — cost: card is cleaner without dropping the integrity safeguard.
+Ruling: spec and plan were amended with explicit owner-directed exceptions for the Healix image, the `ai-support.jpg` replacement and the short badge — cost: approved history is documented rather than silently changing the original constraints.
+Final verification: `node _inspect/verify-vitelize-draft.mjs` → 22/22 checks pass; `node --check public/script.js` → 0; CDP at 1440/1024/390 → 5 cards, feature first, image 1120×700, external link safe, four old sources unchanged, zero overflow, split/stacked layout, badge and CTA visible, long sentence absent, mobile computed styles correct, no console errors.
+Production: PR #15 → `03200fe` squash-merged to `main`; workflow run #17 **SUCCESS**; live HTML contains the Vitelize card, badge, concept caption and section note; live image is a 1120×700 JPEG (190 KB).
