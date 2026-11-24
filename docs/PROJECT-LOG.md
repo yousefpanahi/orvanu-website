@@ -203,7 +203,7 @@ until manually deleted. `purge` exists for scheduled/ manual cleanup.
 - Verified: `node --check`, four photos at 576×720, no horizontal overflow at
   1440/1024/390 px, no site-code console errors.
 
-### Session E — 24 Nov 2026: Vitelize featured draft (not deployed)
+### Session E — 24 Nov 2026: Vitelize featured draft (deployed)
 
 - Added a fifth, full-width split card for Vitelize Health as the first item in
   §04. It uses the supplied category, copy, tags and external CTA, with a short
@@ -227,8 +227,9 @@ until manually deleted. `purge` exists for scheduled/ manual cleanup.
   the long draft sentence is absent; the external link is correct with
   `noopener noreferrer`; no site console errors. Desktop/tablet split and
   mobile stack confirmed.
-- **Not deployed.** Awaiting final owner approval before any branch push, PR or
-  deployment.
+- Deployed: PR #15 → `03200fe` → workflow run #17 **SUCCESS**. Live HTML contains
+  the Vitelize card, short draft badge, concept caption and full section note;
+  the live image is a 1120×700 JPEG (190 KB).
 
 ---
 
