@@ -194,8 +194,10 @@ until manually deleted. `purge` exists for scheduled/ manual cleanup.
   LinkedIn URL), distinct from Mohammadreza Akbari. Four-column desktop grid,
   horizontal rows below 1200 px, stacked cards below 620 px. New 4:5 portraits
   for Yousef and Mohammad; the stated team count deliberately stays at 15.
-- Image generation was unavailable (invalid credential), so experience visuals
-  are hand-built SVG; markup keeps slots for real 16:10 artwork later.
+- Image generation was unavailable (invalid credential), so the first pass used
+  hand-built SVG. Owner-supplied 16:10 visuals now replace all four in
+  `public/assets/experience/`; the section note still states they are selected
+  team experience, not ORVANU client work.
 - Deployment lesson: a Wrangler-managed Pages project wipes dashboard-set plain
   vars on each deploy. `[vars]` and the D1 binding must stay in `wrangler.toml`.
 - Verified: `node --check`, four photos at 576×720, no horizontal overflow at

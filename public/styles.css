@@ -32,7 +32,7 @@ button,a{font:inherit}a{color:inherit;text-decoration:none}button{cursor:pointer
 .exp-visual{position:relative;background:#151021;padding:18px 18px 0;overflow:hidden}
 .exp-visual::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 10%,#7b4de42e,transparent 62%)}
 .exp-visual-label{position:relative;display:block;font-size:8px;font-weight:800;letter-spacing:1.2px;color:#7a6a97}
-.exp-art{position:relative;display:block;width:100%;height:auto;margin-top:8px}
+.exp-art{position:relative;display:block;width:100%;height:auto;margin-top:8px;border-radius:10px}
 .exp-body{padding:26px 28px 28px;display:flex;flex-direction:column;flex:1}
 .exp-sector{font-size:9px;font-weight:800;letter-spacing:1.1px;color:#8049e4;background:#f0e8fe;border-radius:50px;padding:6px 11px;align-self:flex-start}
 .experience-card h3{font-size:22px;letter-spacing:-.8px;margin:16px 0 11px}
