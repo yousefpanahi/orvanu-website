@@ -203,6 +203,33 @@ until manually deleted. `purge` exists for scheduled/ manual cleanup.
 - Verified: `node --check`, four photos at 576×720, no horizontal overflow at
   1440/1024/390 px, no site-code console errors.
 
+### Session E — 24 Nov 2026: Vitelize featured draft (not deployed)
+
+- Added a fifth, full-width split card for Vitelize Health as the first item in
+  §04. It uses the supplied category, copy, tags and external CTA, with a short
+  `Draft · public-site reference` badge near the title. No ORVANU ownership,
+  client engagement, clinical work or results are claimed.
+- At the owner's direction, replaced the locally composed visual with the
+  previously shared Healix telemedicine Dribbble concept image, centre-cropped
+  to 1120×700 JPEG (186 KB) and labelled `Concept reference — not a Vitelize
+  screenshot`. It is not presented as Vitelize branding or an ORVANU-created
+  interface. The original illustration is backed up in the temp folder.
+- Replaced `ai-support.jpg` with the owner-supplied customer-support image,
+  cropped to the same 16:10 format.
+- Fixed review findings: the ≤480px featured overrides now come after the base
+  rules; the CTA is a clear purple button; the badge is visible near the title;
+  and the static checks now pin the full existing article blocks, paragraph
+  order, JPEG dimensions, effective CSS, badge and approved image exceptions.
+- Verification: `_inspect/verify-vitelize-draft.mjs` passes all 22 checks; a
+  deliberately mutated HTML copy fails only the preservation check; `node
+  --check` exits 0; five cards load at 1440/1024/390 px with no overflow; the
+  feature image is 1120×700; the CTA and mobile computed styles are correct;
+  the long draft sentence is absent; the external link is correct with
+  `noopener noreferrer`; no site console errors. Desktop/tablet split and
+  mobile stack confirmed.
+- **Not deployed.** Awaiting final owner approval before any branch push, PR or
+  deployment.
+
 ---
 
 ## 7. Bugs found and fixed (so they are not re-introduced)
