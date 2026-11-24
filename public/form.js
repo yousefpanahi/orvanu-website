@@ -29,7 +29,7 @@
   /** @type {File[]} */
   let selectedFiles = [];
 
-  const fields = ['name', 'email', 'phone', 'description'];
+  const fields = ['name', 'email', 'description'];
 
   const showError = (name, message) => {
     const input = form.elements[name];
@@ -62,12 +62,6 @@
     /^[^\s@"(),:;<>[\\\]]+@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)+$/.test(value) &&
     value.length <= 254;
 
-  const isPhone = (value) => {
-    if (!/^\+[\d\s().-]+$/.test(value)) return false;
-    const digits = value.replace(/\D/g, '');
-    return digits.length >= 7 && digits.length <= 15;
-  };
-
   const validateField = (name) => {
     const value = String(form.elements[name].value || '').trim();
     if (name === 'name') {
@@ -77,9 +71,6 @@
     if (name === 'email') {
       if (!value) return 'Please add an email address so we can reply.';
       if (!isEmail(value)) return 'That email address does not look valid.';
-    }
-    if (name === 'phone' && value && !isPhone(value)) {
-      return 'Include your country code, for example +31 6 12345678.';
     }
     if (name === 'description') {
       if (value.length < 20) return 'Please describe your project in a little more detail (at least 20 characters).';
@@ -262,11 +253,7 @@
     const payload = new FormData();
     payload.append('name', String(form.elements.name.value).trim());
     payload.append('email', String(form.elements.email.value).trim());
-    payload.append('phone', String(form.elements.phone.value).trim());
-    payload.append('company', String(form.elements.company.value).trim());
     payload.append('service', form.elements.service.value);
-    payload.append('budget', form.elements.budget.value);
-    payload.append('timeline', form.elements.timeline.value);
     payload.append('description', String(form.elements.description.value).trim());
     payload.append('website', String(form.elements.website.value || ''));
     selectedFiles.forEach((file) => payload.append('files', file, file.name));
