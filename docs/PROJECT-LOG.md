@@ -231,7 +231,7 @@ until manually deleted. `purge` exists for scheduled/ manual cleanup.
   the Vitelize card, short draft badge, concept caption and full section note;
   the live image is a 1120×700 JPEG (190 KB).
 
-### Session F — 24 Nov 2026: navigation label draft (not deployed)
+### Session F — 24 Nov 2026: navigation label (deployed)
 
 - Changed the `#work` nav label from **Experience** to **Projects** in
   `public/index.html`. The desktop and mobile menus share one `#site-nav`
@@ -245,9 +245,11 @@ until manually deleted. `purge` exists for scheduled/ manual cleanup.
   The initial mobile failure was a test-timing artifact — the fixed 1.2 s sleep
   sampled a 7,835 px smooth scroll mid-animation; the test now waits for the
   settled position.
-- Local preview opened in the Review pane. **Not deployed** — awaiting approval.
+- Local preview opened in the Review pane.
+- Deployed with Session G: PR #17 → `ae57c16` → workflow run #19 **SUCCESS**.
+  Live HTML shows `Projects` in both the nav and the footer.
 
-### Session G — 24 Nov 2026: Vitelize card revision draft (not deployed)
+### Session G — 24 Nov 2026: Vitelize card revision (deployed)
 
 - Revised the existing first featured card in `public/index.html` with the
   owner's exact new title, category, single-paragraph description, four tags
@@ -268,10 +270,15 @@ until manually deleted. `purge` exists for scheduled/ manual cleanup.
   sources, zero overflow, correct split/stacked layout and no site console
   errors (only the unrelated Cloudflare Turnstile error was filtered). Local
   preview opened in the Review pane.
-- Pushed to feature branch `feat/vitelize-card-revision` only. **No PR, merge or
-  deploy** — awaiting explicit approval. Note: this branch's `index.html` also
-  carries Session F's local `Experience → Projects` nav label change because
-  the workspace has no Git binary to separate the two edits.
+- Pushed to feature branch `feat/vitelize-card-revision` (commit `a89b492`),
+  which also carried Session F's nav label change because the workspace has no
+  Git binary to separate the two edits.
+- Deployed after owner approval: PR #17 → `ae57c16` → workflow run #19
+  **SUCCESS**. Live HTML through the translate proxy confirms the new title,
+  category, description, three stats, source link, four tags, caption, badge,
+  CTA, image path, headline and `Projects` nav/footer labels; the old title is
+  absent. (The proxy rewrites `#work` hrefs to absolute URLs, so live checks
+  match on the rendered `>Projects</a>` text instead.)
 
 ---
 
