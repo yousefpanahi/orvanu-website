@@ -42,9 +42,7 @@
         'Cloud & MLOps'
       ],
       initials: 'MB',
-      // Portrait slot: place the 4:5 photo at assets/team/mohammad-behbahani.jpg
-      // and set this to that path. Until then the initials placeholder renders.
-      photo: '',
+      photo: 'assets/team/mohammad-behbahani.jpg',
       linkedin: 'https://www.linkedin.com/in/mohammad-behbahani-85958775/'
     },
     {
