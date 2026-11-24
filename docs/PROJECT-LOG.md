@@ -231,6 +231,48 @@ until manually deleted. `purge` exists for scheduled/ manual cleanup.
   the Vitelize card, short draft badge, concept caption and full section note;
   the live image is a 1120×700 JPEG (190 KB).
 
+### Session F — 24 Nov 2026: navigation label draft (not deployed)
+
+- Changed the `#work` nav label from **Experience** to **Projects** in
+  `public/index.html`. The desktop and mobile menus share one `#site-nav`
+  element, so one edit covers both; the footer `EXPLORE` link was changed too.
+- `href="#work"`, all other menu items, the portfolio section headline, card
+  content, styling and menu behaviour are unchanged. Other "Experience" strings
+  in the Vitelize card copy were deliberately left alone.
+- Verified at 1440/390 px: labels and links, footer link, headline, menu
+  open/close, click-to-scroll landing at the 86 px sticky-header offset, zero
+  horizontal overflow and no console errors (two consecutive green runs).
+  The initial mobile failure was a test-timing artifact — the fixed 1.2 s sleep
+  sampled a 7,835 px smooth scroll mid-animation; the test now waits for the
+  settled position.
+- Local preview opened in the Review pane. **Not deployed** — awaiting approval.
+
+### Session G — 24 Nov 2026: Vitelize card revision draft (not deployed)
+
+- Revised the existing first featured card in `public/index.html` with the
+  owner's exact new title, category, single-paragraph description, four tags
+  and three statistics. The statistics read strictly as published
+  partner-network facts (`USA / Market`, `9 / Partner Locations`,
+  `2 / U.S. States`), sourced inline to the Vitelize partner-network page.
+- Kept the approved visual, its `Concept reference — not a Vitelize screenshot`
+  caption, the short `Draft · public-site reference` badge, the full section
+  note, the CTA, layout and the four other cards unchanged. The owner waived
+  contribution confirmation; no contribution, client or performance claim was
+  added.
+- Added compact `.exp-stats` styles in `public/styles.css` with effective
+  ≤480px overrides. Added `_inspect/verify-vitelize-revision.mjs`; spec and plan
+  amendments live in `docs/superpowers/`.
+- Verification: static script 17/17 checks pass; `node --check public/script.js`
+  exits 0; headless Chrome at 1440/1024/390 px confirms exact DOM copy, stats,
+  source link, tags, image, CTA, preserved caption/badge, four unchanged card
+  sources, zero overflow, correct split/stacked layout and no site console
+  errors (only the unrelated Cloudflare Turnstile error was filtered). Local
+  preview opened in the Review pane.
+- Pushed to feature branch `feat/vitelize-card-revision` only. **No PR, merge or
+  deploy** — awaiting explicit approval. Note: this branch's `index.html` also
+  carries Session F's local `Experience → Projects` nav label change because
+  the workspace has no Git binary to separate the two edits.
+
 ---
 
 ## 7. Bugs found and fixed (so they are not re-introduced)
