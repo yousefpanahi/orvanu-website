@@ -624,16 +624,6 @@
                 <p class="field-error" id="f-email-error" role="alert" hidden></p>
               </div>
               <div class="field">
-                <label for="f-phone">WhatsApp number <span class="opt">Optional</span></label>
-                <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+31 6 12345678" aria-describedby="f-phone-help f-phone-error" />
-                <p class="field-help" id="f-phone-help">Include your country code.</p>
-                <p class="field-error" id="f-phone-error" role="alert" hidden></p>
-              </div>
-              <div class="field">
-                <label for="f-company">Company name <span class="opt">Optional</span></label>
-                <input id="f-company" name="company" type="text" autocomplete="organization" />
-              </div>
-              <div class="field">
                 <label for="f-service">Service needed</label>
                 <select id="f-service" name="service" aria-describedby="f-service-error">
                   <option value="">Select a service</option>
@@ -643,28 +633,6 @@
                   <option>Not Sure Yet</option>
                 </select>
                 <p class="field-error" id="f-service-error" role="alert" hidden></p>
-              </div>
-              <div class="field">
-                <label for="f-budget">Estimated project budget <span class="opt">Optional</span></label>
-                <select id="f-budget" name="budget" aria-describedby="f-budget-error">
-                  <option value="">Select budget range</option>
-                  <option>Under €5,000</option>
-                  <option>€5,000 – €15,000</option>
-                  <option>€15,000 – €50,000</option>
-                  <option>€50,000+</option>
-                </select>
-                <p class="field-error" id="f-budget-error" role="alert" hidden></p>
-              </div>
-              <div class="field field-wide">
-                <label for="f-timeline">Project timeline <span class="opt">Optional</span></label>
-                <select id="f-timeline" name="timeline" aria-describedby="f-timeline-error">
-                  <option value="">When would you like to launch?</option>
-                  <option>Within 1 month</option>
-                  <option>1–3 months</option>
-                  <option>3–6 months</option>
-                  <option>Flexible / Not sure yet</option>
-                </select>
-                <p class="field-error" id="f-timeline-error" role="alert" hidden></p>
               </div>
               <div class="field field-wide">
                 <label for="f-description">Project description <span class="req" aria-hidden="true">*</span></label>
@@ -695,7 +663,7 @@
               <button class="button button-primary inquiry-submit" id="inquiry-submit" type="submit">Send Project Inquiry</button>
               <p class="inquiry-hint">Fields marked <span class="req" aria-hidden="true">*</span> are required. Need to talk first? <a href="mailto:orvanutech@gmail.com">Email us directly</a>.</p>
             </div>
-            <p class="inquiry-privacy">We use these details only to reply to your inquiry — no mailing lists, no sharing. Attachments are stored privately and access links expire after 7 days. A WhatsApp number, if given, is used for this conversation only.</p>
+            <p class="inquiry-privacy">We use these details only to reply to your inquiry — no mailing lists, no sharing. Attachments are stored privately and access links expire after 7 days.</p>
             <div class="inquiry-status" id="inquiry-status" role="status" aria-live="polite" hidden></div>
           </form>
           <div class="inquiry-success" id="inquiry-success" hidden>
