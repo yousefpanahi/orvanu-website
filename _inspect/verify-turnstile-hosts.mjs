@@ -11,8 +11,11 @@ function check(name, fn) {
 }
 function assert(condition, message) { if (!condition) throw new Error(message); }
 
-check('hostname allowlist exists and pins the production host', () => {
-  assert(js.includes("const TURNSTILE_HOSTS = ['orvanu.pages.dev'];"), 'TURNSTILE_HOSTS allowlist missing or changed');
+check('hostname allowlist exists and pins the production hosts', () => {
+  assert(
+    js.includes("const TURNSTILE_HOSTS = ['orvanu.pages.dev', 'orvanu.vercel.app'];"),
+    'TURNSTILE_HOSTS allowlist missing or changed'
+  );
 });
 
 check('widget loading is gated on the allowlist', () => {

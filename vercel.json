@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    { "source": "/api/inquiry", "destination": "https://orvanu.pages.dev/api/inquiry" },
+    { "source": "/api/file", "destination": "https://orvanu.pages.dev/api/file" }
+  ]
+}
