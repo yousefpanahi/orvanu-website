@@ -5,7 +5,7 @@ built, why decisions were made, and what is still open. It is written so a
 future session — human or another LLM — can pick up without re-reading old chat
 transcripts.
 
-Last updated: **24 November 2026**.
+Last updated: **27 November 2026**.
 
 Related documents:
 
@@ -21,7 +21,7 @@ Related documents:
 | Item | Value |
 | --- | --- |
 | Live site | https://orvanu.pages.dev/ |
-| Mirror | https://orvanu.vercel.app/ — Vercel project `orvanu` (team `ypanahi70-4650`), Git-integrated: every push to `main` redeploys it automatically alongside Cloudflare. Static only — no `/api` and no working `/admin` (the backend is Cloudflare-only), so the inquiry form there shows its email fallback. Canonical URL stays `orvanu.pages.dev`. |
+| Mirror | https://orvanu.vercel.app/ — Vercel project `orvanu` (team `ypanahi70-4650`), Git-integrated: every push to `main` redeploys it automatically alongside Cloudflare. Static front end plus a narrow proxy: `vercel.json` rewrites `/api/inquiry` and `/api/file` to `orvanu.pages.dev`, so the inquiry form works on the mirror too (Turnstile is enabled for `orvanu.vercel.app`; `/api/admin` is deliberately not proxied, so `/admin` stays Cloudflare-only). Attachment uploads through the proxy are capped by Vercel's request-body limit (~4.5 MB); larger files must be sent from `pages.dev`. Canonical URL stays `orvanu.pages.dev`. |
 | Hosting | Cloudflare Pages, project `orvanu`, Direct Upload via Wrangler |
 | Repository | `yousefpanahi/orvanu-website`, branch `main` (public) |
 | Deploy trigger | push to `main` → `.github/workflows/deploy.yml` → `wrangler pages deploy public --project-name=orvanu` |
@@ -363,6 +363,31 @@ until manually deleted. `purge` exists for scheduled/ manual cleanup.
   (5 checks, RED before the fix) and by a headless-Chrome submission against
   the live mirror (banner shown, no `[object Object]`, email fallback present,
   button restored, success panel hidden).
+
+### Session J — 27 Nov 2026: Vercel inquiry proxy (deployed)
+
+- The Vercel mirror showed the inquiry form's email-fallback error on submit
+  because it is static-only and has no `/api` backend. Added `vercel.json` with
+  external rewrites for `/api/inquiry` and `/api/file` → `https://orvanu.pages.dev/api/...`,
+  so the mirror now proxies submissions to the Cloudflare backend. `/api/admin/*`
+  is intentionally **not** proxied — `/admin` stays Cloudflare-only.
+- `public/form.js`: added `orvanu.vercel.app` to `TURNSTILE_HOSTS` so the widget
+  renders on the mirror. This pairs with adding the same hostname to the Turnstile
+  widget's Hostnames list in the Cloudflare dashboard (done by the owner).
+- Tests: new `_inspect/verify-vercel-proxy.mjs` (7 checks, RED before the change);
+  `_inspect/verify-turnstile-hosts.mjs` updated to the two-host allowlist (5 checks).
+  `node --check public/form.js` clean; localhost smoke test green (form renders,
+  Turnstile off on localhost, no console errors).
+- Live verification on `orvanu.vercel.app`: deployed `form.js` includes the vercel
+  host; a honeypot POST to `/api/inquiry` returned `200 {"ok":true,"id":"ignored"}`
+  (proves the rewrite reaches the Pages function with no side effects); Turnstile
+  rendered an 837-char token on the mirror; a real submission through the form
+  returned success with reference `ORV-20261127-b607a111` (a clearly-labelled test
+  lead — delete from `/admin` if desired).
+- Deployed: PR #24 → `4e9536a` → workflow run #25 **SUCCESS**.
+- Known limits: attachments >~4.5 MB via Vercel are capped by Vercel's proxy
+  (send large files from `pages.dev`); the 5/hour per-connection rate limit sees
+  Vercel's proxy IP, so it is shared across mirror visitors (fine at current volume).
 
 ---
 
