@@ -287,7 +287,9 @@
           response.status === 413
             ? 'That submission is too large. Please reduce the attachments.'
             : 'Something went wrong sending your inquiry. Please try again, or email orvanutech@gmail.com.';
-        setStatus(result.error || fallback, true);
+        // A proxy or host can answer with an error object rather than a plain
+        // message, which would render as "[object Object]". Only trust strings.
+        setStatus(typeof result.error === 'string' && result.error ? result.error : fallback, true);
         if (window.turnstile && turnstileWidget !== null) window.turnstile.reset(turnstileWidget);
         return;
       }
