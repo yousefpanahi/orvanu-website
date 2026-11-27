@@ -353,6 +353,16 @@ until manually deleted. `purge` exists for scheduled/ manual cleanup.
   from widget-script + injected token input + error box to zero widget traces
   and zero console errors (nothing filtered). All earlier suites
   (section-removal, discovery-CTA, inquiry-fields) still pass.
+- **Follow-up fix (same branch):** submitting the form on the Vercel mirror
+  rendered `[object Object]` in the error banner. Cause: `setStatus(result.error
+  || fallback)` assumed the server's `error` field is a string, but Vercel's
+  platform 404 returns `error` as an **object**, which stringifies badly. The
+  banner now uses `result.error` only when it is a non-empty string and falls
+  back to the readable "Something went wrong sending your inquiry… email
+  orvanutech@gmail.com." otherwise. Pinned by `_inspect/verify-error-message.mjs`
+  (5 checks, RED before the fix) and by a headless-Chrome submission against
+  the live mirror (banner shown, no `[object Object]`, email fallback present,
+  button restored, success panel hidden).
 
 ---
 
