@@ -21,11 +21,12 @@ Related documents:
 | Item | Value |
 | --- | --- |
 | Live site | https://orvanu.pages.dev/ |
+| Mirror | https://orvanu.vercel.app/ — Vercel project `orvanu` (team `ypanahi70-4650`), Git-integrated: every push to `main` redeploys it automatically alongside Cloudflare. Static only — no `/api` and no working `/admin` (the backend is Cloudflare-only), so the inquiry form there shows its email fallback. Canonical URL stays `orvanu.pages.dev`. |
 | Hosting | Cloudflare Pages, project `orvanu`, Direct Upload via Wrangler |
 | Repository | `yousefpanahi/orvanu-website`, branch `main` (public) |
 | Deploy trigger | push to `main` → `.github/workflows/deploy.yml` → `wrangler pages deploy public --project-name=orvanu` |
-| Deployed commit | PR from `feat/shorten-page-and-discovery-cta` — "Remove How We Work, refine inquiry CTA and optional service" |
-| Previous deploys | PR #19 (run #21 ✓), PR #17 (`ae57c16`, run #19 ✓), PR #18 (run #20 ✓), `01ddcfa` (About rewrite, run #10 ✓) |
+| Deployed commit | branch `fix/turnstile-host-gate` — "Gate Turnstile widget to authorized hostnames" (squash-merged 27 Nov 2026; see Actions for the run) |
+| Previous deploys | PR #20 (`00cf7db`, run #22 ✓), PR #19 (run #21 ✓), PR #17 (`ae57c16`, run #19 ✓), PR #18 (run #20 ✓), `01ddcfa` (About rewrite, run #10 ✓) |
 
 What is live right now:
 
@@ -324,9 +325,34 @@ until manually deleted. `purge` exists for scheduled/ manual cleanup.
   on the unrelated word “Growth”. It now checks exact removed text and DOM
   markers; a deliberate `<h3>Grow</h3>` fixture fails the assertion correctly.
 - Local preview opened in the Review pane before deployment.
-- Deployed after the owner's `deploy all` approval: PR from
-  `feat/shorten-page-and-discovery-cta`; live verification is recorded in the
-  final session notes.
+- Deployed after the owner's `deploy all` approval: PR #20 (`00cf7db`) →
+  workflow run #22 **SUCCESS**; live HTML/CSS/JS verified through the proxy.
+
+### Session I — 27 Nov 2026: Vercel mirror + Turnstile hostname gate (deployed)
+
+- **Vercel mirror is live.** The owner imported `yousefpanahi/orvanu-website`
+  into Vercel (project `orvanu`, team `ypanahi70-4650`, Hobby) with Output
+  Directory `public`, framework `Other`, no build command. Vercel's Git
+  integration redeploys on every push to `main`, so both hosts now track the
+  same branch; no workflow or secret was added for it.
+- Mirror verified end-to-end (36 checks): exact nav/eyebrows/CTA/optional tag,
+  all 16 public assets 200, deleted CSS absent, canonical still
+  `orvanu.pages.dev`, repo files (`docs/`, `tools/`, `schema.sql`, …) correctly
+  404, `/api/inquiry` 404 as expected, robots.txt served. Headless Chrome at
+  1440/390 px on the live mirror: all layout/nav/scroll/overflow checks green.
+- **Turnstile fix (this branch).** The widget showed Cloudflare's
+  "Unable to connect to website" box on the Vercel mirror: sitekeys are
+  hostname-locked and only `orvanu.pages.dev` is authorized, so on any other
+  host the widget can only fail. `public/form.js` now loads the widget only
+  when `location.hostname` is in `TURNSTILE_HOSTS = ['orvanu.pages.dev']` —
+  add future custom domains to that array *and* to the widget's hostname list
+  in the Cloudflare dashboard. Behaviour on the real site is unchanged; the
+  Vercel mirror and localhost render the form with no widget and no error box.
+- Verified TDD-style: `_inspect/verify-turnstile-hosts.mjs` (5 static checks)
+  failed before the edit and passes after; headless Chrome on localhost went
+  from widget-script + injected token input + error box to zero widget traces
+  and zero console errors (nothing filtered). All earlier suites
+  (section-removal, discovery-CTA, inquiry-fields) still pass.
 
 ---
 
@@ -454,7 +480,7 @@ Raw output: `_inspect/admin-test-results.txt`, `_inspect/inquiry-test-results.tx
 | 1 | Create D1 `orvanu-inquiries` (EU) and run `schema.sql`; bind as `DB` | owner, Cloudflare dashboard |
 | 2 | Create R2 bucket `orvanu-inquiries` (EU, private); bind as `INQUIRIES`; add a 90-day lifecycle rule | owner |
 | 3 | Add secrets: `RESEND_API_KEY`, `FILE_SIGNING_SECRET`, `SESSION_SECRET`, `ADMIN_EMAILS=orvanutech@gmail.com`, `INQUIRY_TO_EMAIL`, `INQUIRY_FROM_EMAIL`, `PUBLIC_SITE_URL` | owner |
-| 4 | Create the Turnstile widget and paste the **site key** into `TURNSTILE_SITEKEY` in `public/form.js` (currently empty), then add `TURNSTILE_SECRET_KEY` to Pages | owner + agent |
+| 4 | Turnstile: the widget exists and its site key is live in `public/form.js` (hostname-gated to `orvanu.pages.dev`). Confirm `TURNSTILE_SECRET_KEY` is set on the Pages project so submissions are actually verified | owner |
 | 5 | Prove the chain end to end: sign in at `/admin`, submit one inquiry with an attachment, confirm the email arrives | owner |
 | 6 | Verify the Resend free-tier sender (`onboarding@resend.dev`) actually delivers to the inbox | owner |
 | 7 | If the About copy should change, edit the block in `public/index.html` (`#about`) — facts only | owner + agent |
