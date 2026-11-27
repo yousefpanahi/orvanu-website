@@ -11,11 +11,11 @@
   // the server requires a valid token whenever TURNSTILE_SECRET_KEY is set.
   const TURNSTILE_SITEKEY = '0x4AAAAAAGPeAoSwkEhoDlOT';
   // Turnstile is hostname-locked in the Cloudflare dashboard. Load the widget
-  // only on authorized hosts; anywhere else (Vercel mirror, localhost,
-  // previews) it can only render an error box, and the inquiry API it
-  // protects does not exist there either. Add future custom domains here when
-  // attaching them to the Pages project and to the widget's hostname list.
-  const TURNSTILE_HOSTS = ['orvanu.pages.dev'];
+  // only on authorized hosts; anywhere else (localhost, previews) it can only
+  // render an error box. The Vercel mirror proxies /api/inquiry to the
+  // Cloudflare backend, so the widget must render there too. Add future custom
+  // domains here AND to the widget's hostname list in the Cloudflare dashboard.
+  const TURNSTILE_HOSTS = ['orvanu.pages.dev', 'orvanu.vercel.app'];
 
   const form = document.querySelector('#inquiry-form');
   if (!form) return;
