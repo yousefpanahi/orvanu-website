@@ -5,7 +5,7 @@ built, why decisions were made, and what is still open. It is written so a
 future session — human or another LLM — can pick up without re-reading old chat
 transcripts.
 
-Last updated: **27 November 2026**.
+Last updated: **28 November 2026**.
 
 Related documents:
 
@@ -58,10 +58,12 @@ nothing works either. See §12.
 
 ```
 public/
-  index.html      single-page site (sections 01–06, id="inquiry" form, id="about")
-  styles.css      all styles (minified single-line blocks per section)
-  script.js       nav, scroll reveal, TEAM array rendering, year
+  index.html      single-page site (sections 01–06, id="inquiry" form, id="about",
+                  id="work" with #project-grid + #project-dialog)
+  styles.css      all styles (minified single-line blocks per section; .project-* styles)
+  script.js       nav, scroll reveal, TEAM + PROJECTS array rendering, project dialog, year
   form.js         inquiry form: validation, file list, drag & drop, Turnstile, submit
+  assets/experience/project-*.jpg  six 1120×700 project images (neutral filenames)
   admin/          index.html, admin.css, admin.js — the private dashboard
   _headers        security headers (admin + api scoping)
   robots.txt      disallows /admin and /api/
@@ -389,6 +391,90 @@ until manually deleted. `purge` exists for scheduled/ manual cleanup.
   (send large files from `pages.dev`); the 5/hour per-connection rate limit sees
   Vercel's proxy IP, so it is shared across mirror visitors (fine at current volume).
 
+### Session K — 28 Nov 2026: six-project portfolio category (local, not deployed)
+
+- Added a product/operations category inside the existing `#work` section: heading
+  `Selected Product & Operations Experience`, intro line `Six representative
+  initiatives spanning logistics, e-commerce, and operational systems.`, a
+  `#project-grid` rendered from a `PROJECTS` array in `public/script.js`, and one
+  native `<dialog id="project-dialog">` for details. Demo/experience framing kept:
+  all six are **previous professional experience, never ORVANU client work**, with
+  no employer names or branding.
+- Six projects: 01 Digital Yard Management, 02 Single-Item Order Optimization,
+  03 Driver & Delivery Partner Incentive Dashboard, 04 Inbound Receiving & Quality
+  Control, 05 OTP-Based Proof of Delivery, 06 Dark Store Fulfillment for Quick
+  Commerce.
+- Withheld/unconfirmed metrics respected: Project 03's `+18%` and Project 04's `12%`
+  return-rate are **not published** (empty outcome); Projects 05 (`98% POD
+  compliance`) and 06 (`12 dark stores` / `45-minute target`) carry a
+  **Reported outcome** label only.
+- Superseded the old "Yard Management System" card with Project 01 (approved plan);
+  the Vitelize feature card, AI Customer Support, AI Travel and Scheduled Delivery
+  cards are **byte-identical** to the pre-change baseline.
+- Images: six owner-supplied visuals normalised to 1120×700 JPEG with neutral
+  filenames `project-*.jpg`; alt text carries no brand/employer names.
+- Implementation: HTML restructure + `<noscript>` fallback listing all six titles;
+  `PROJECTS` data + `buildProjectCard`/`renderProjects`/`openProjectDialog`; CSS
+  `.project-grid` (3→2→1 columns), `.project-card`, `.project-media`,
+  `.project-dialog` plus responsive and reduced-motion rules. Dialog opens from the
+  Explore buttons, closes on Esc / backdrop / close button, and returns focus to the
+  trigger.
+- **Not deployed** — local only, no branch push or production update (per instruction).
+- **Verification is text/DOM only (no screenshots opened).** The prior session
+  reported the 23 browser checks passing but crashed when it tried to read the
+  screenshots (this model cannot ingest images); this session re-verified everything
+  independently without reading any image:
+  - `_inspect/verify-six-portfolio.mjs` — **41/41** static checks (six 1120×700
+    images >10 KB, category copy + clarification line, old Yard card gone, `PROJECTS`
+    six ids, dialog hooks, `+18%`/`12%` and brand names absent from public strings,
+    CSS hooks).
+  - `_inspect/dev/browser-six-portfolio.mjs` — **23/23** headless-Chrome checks at
+    1440/1024/390 px (6 cards + 6 images load, no horizontal overflow, 3/2/1
+    columns; dialog 01 opens with Overview/Challenge/Solution/Capabilities + image;
+    Esc closes and focus returns; page omits `+18%`/`12%`; no console errors).
+  - `_inspect/dev/browser-six-portfolio-deep.mjs` — **72/72** checks: all six dialogs
+    opened and closed, titles/categories/sections/capability counts/outcome labels
+    correct, every image 1120×700 natural, alt text brand-free, equal-height card
+    rows, and withheld metrics absent in every dialog and in page text.
+  - Regression suites re-run and pass: discovery-CTA, inquiry-fields,
+    section-removal, turnstile-hosts, vercel-proxy, vitelize-draft.
+  - `_inspect/verify-vitelize-revision.mjs` was **stale** (its baseline pinned the old
+    four non-feature cards including the removed Yard card). Reconciled the check to
+    the new invariant: every current card must be byte-identical to baseline and the
+    **only** allowed removal is the superseded Yard card → green afterwards. `node
+    --check` clean on both public JS files.
+
+### Session L — 28 Nov 2026: Scheduled Delivery moved into the project category (local, not deployed)
+
+- Per owner request, moved **Scheduled Delivery Business Line** into the
+  "Selected Product & Operations Experience" category as a standard project card
+  (not a duplicate): removed its standalone `experience-card` from the top
+  `.experience-grid` (now Vitelize feature + AI Customer Support + AI Travel) and
+  added it to the `PROJECTS` array.
+- Placed **in the middle** (position **04 of 07**); the three following projects were
+  renumbered (Inbound = 05, OTP = 06, Dark Store = 07). Reused its existing image
+  `assets/experience/scheduled-delivery.jpg` (1120×700) and its existing approved copy;
+  challenge / solution / capabilities derive only from that copy — no new claims.
+- Category intro updated "Six representative initiatives…" → "Seven representative
+  initiatives…"; the `<noscript>` fallback now lists Scheduled Delivery between Driver
+  and Inbound.
+- Verification (text/DOM only, no screenshots read):
+  - New TDD suite `_inspect/verify-scheduled-delivery-in-category.mjs` — **19/19**
+    (scheduled-delivery in PROJECTS at the middle position, seven ids + nums 01–07,
+    standalone card gone, intro says Seven, noscript lists it in the middle, image
+    1120×700, withheld metrics + brand names absent). RED before (13 fails), green after.
+  - `_inspect/verify-six-portfolio.mjs` — **41/41**; `_inspect/dev/browser-six-portfolio.mjs`
+    — **23/23** at 1440/1024/390 px with **7** cards; and
+    `_inspect/dev/browser-six-portfolio-deep.mjs` — **85/85** (all seven dialogs, top grid
+    = Vitelize + 2 AI cards with Scheduled Delivery gone, project order / no duplicate,
+    images 1120×700, brand-free alt text, withheld metrics absent, no console errors).
+  - Other suites pass: discovery-CTA, inquiry-fields, section-removal, turnstile-hosts,
+    vercel-proxy, vitelize-revision.
+  - Retired the obsolete `_inspect/verify-vitelize-draft.mjs` (renamed to `.mjs.retired`):
+    it asserted pre-Session-G Vitelize copy that was intentionally replaced and is fully
+    superseded by `verify-vitelize-revision.mjs`.
+- **Not deployed** — local only. Grid now holds seven cards (desktop rows of 3 / 3 / 1).
+
 ---
 
 ## 7. Bugs found and fixed (so they are not re-introduced)
@@ -506,6 +592,9 @@ Raw output: `_inspect/admin-test-results.txt`, `_inspect/inquiry-test-results.tx
 - Private `/admin` with OTP auth, five statuses, search/filter/sort, secure
   downloads, delete and purge, audit log.
 - About section rewritten with facts only, fact cards and eight expertise chips.
+- Seven-project "Selected Product & Operations Experience" portfolio category with an
+  accessible detail dialog — implemented and fully verified **locally**, pending
+  deployment (see Sessions K & L).
 - Docs: system plan, form setup, admin operations, this log.
 
 ## 12. Open items (owner)

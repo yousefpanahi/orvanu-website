@@ -121,9 +121,22 @@ check('new tags are in supplied order', () => {
   }
 });
 
-check('four existing cards are unchanged', () => {
-  const actual = extractArticles(html).join('\n---BLOCK---\n').trimEnd();
-  assert(actual === baseline, 'article markup differs from the production baseline');
+check('existing cards unchanged (only Yard card intentionally removed)', () => {
+  // Six-portfolio change (approved) supersedes the old "Yard Management System"
+  // card with Project 01. Every other experience card must stay byte-identical
+  // to the production baseline; the Yard card is the only allowed removal.
+  const current = extractArticles(html);
+  const previous = extractArticles(baseline);
+  for (const block of current) {
+    assert(previous.includes(block), 'an existing card was modified: ' + (block.match(/<h3>([\s\S]*?)<\/h3>/) || [, '?'])[1]);
+  }
+  const removed = previous.filter((block) => !current.includes(block));
+  // Allowed removals from the experience grid: the superseded Yard card and the
+  // Scheduled Delivery card relocated into the project category (Session L).
+  const allowedRemoved = ['Yard Management System', 'Scheduled Delivery Business Line'];
+  const removedTitles = removed.map((b) => (b.match(/<h3>([\s\S]*?)<\/h3>/) || [, '?'])[1]);
+  assert(removedTitles.slice().sort().join('|') === allowedRemoved.slice().sort().join('|'),
+    'unexpected removals/changes: ' + removedTitles.join(', '));
 });
 
 check('statistics CSS exists and is compact', () => {
