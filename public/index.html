@@ -362,6 +362,7 @@
               <em>behind ORVANU.</em></h2>
           </div>
           <p>Our team has contributed to complex digital products across AI, logistics, e-commerce, and operational systems. The examples below reflect selected professional experience from projects delivered over the past four years.</p>
+          <p class="work-clarification">Selected examples of product and operational initiatives from previous professional experience.</p>
         </div>
         <div class="experience-grid">
           <article class="experience-card experience-feature" data-sector="healthtech" data-anon="true">
@@ -419,34 +420,25 @@
               </div>
             </div>
           </article>
-          <article class="experience-card" data-sector="logistics" data-anon="true">
-            <div class="exp-visual">
-              <span class="exp-visual-label">LOGISTICS / 0 → 1 LAUNCH</span>
-              <img class="exp-art" src="assets/experience/scheduled-delivery.jpg" alt="Illustrative connected delivery platform ecosystem" width="1120" height="700" loading="lazy" decoding="async">
-            </div>
-            <div class="exp-body">
-              <span class="exp-sector">Logistics · Product ecosystem</span>
-              <h3>Scheduled Delivery Business Line</h3>
-              <p>Led the launch of a new delivery model for a major digital platform with 50+ million active users, expanding from on-demand into scheduled delivery. Built from 0 to 1 as a connected ecosystem — customer panel, admin panel, rider app, and warehouse app — designed to scale toward 1 million daily orders.</p>
-              <div class="service-tags">
-                <span>0→1 product launch</span><span>Logistics tech</span><span>Scheduled delivery</span><span>Marketplace operations</span>
-              </div>
-            </div>
-          </article>
-          <article class="experience-card" data-sector="operations" data-anon="true">
-            <div class="exp-visual">
-              <span class="exp-visual-label">OPERATIONS / WAREHOUSE</span>
-              <img class="exp-art" src="assets/experience/yard-management.jpg" alt="Illustrative warehouse and yard operations view" width="1120" height="700" loading="lazy" decoding="async">
-            </div>
-            <div class="exp-body">
-              <span class="exp-sector">Operations · Marketplace</span>
-              <h3>Yard Management System</h3>
-              <p>Designed and launched a yard management system for a large online marketplace, improving seller experience and operational efficiency across hubs and warehouses — streamlining inbound coordination and warehouse receiving for an ecosystem of roughly 200,000 sellers.</p>
-              <div class="service-tags">
-                <span>Yard management</span><span>Warehouse operations</span><span>Seller experience</span><span>Operational efficiency</span>
-              </div>
-            </div>
-          </article>
+        </div>
+        <div class="project-category">
+          <div class="project-category-head">
+            <h3 class="project-category-title">Selected Product &amp; Operations Experience</h3>
+            <p class="project-category-intro">Seven representative initiatives spanning logistics, e-commerce, and operational systems.</p>
+          </div>
+          <!-- Seven cards are rendered from the PROJECTS array in script.js. -->
+          <div class="project-grid" id="project-grid" role="list"></div>
+          <noscript>
+            <ul class="project-fallback">
+              <li><strong>Digital Yard Management</strong> — Logistics Technology / Warehouse Management</li>
+              <li><strong>Single-Item Order Optimization</strong> — E-commerce / Fulfillment Optimization</li>
+              <li><strong>Driver &amp; Delivery Partner Incentive Dashboard</strong> — Business Intelligence / Delivery Technology</li>
+              <li><strong>Scheduled Delivery Business Line</strong> — Logistics · Product ecosystem</li>
+              <li><strong>Inbound Receiving &amp; Quality Control</strong> — Warehouse Technology / Quality Management</li>
+              <li><strong>OTP-Based Proof of Delivery</strong> — Last-Mile Delivery / Digital Verification</li>
+              <li><strong>Dark Store Fulfillment for Quick Commerce</strong> — Quick Commerce / Fulfillment Technology</li>
+            </ul>
+          </noscript>
         </div>
         <div class="experience-cta">
           <div>
@@ -457,7 +449,18 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
           </a>
         </div>
-        <p class="work-note">Selected professional experience: the four cards above were delivered by members of our team while working with other organisations, not by ORVANU as a vendor. Client names are withheld and no endorsement is implied. The Vitelize Health entry is a draft public-site reference; the team's exact contribution is unconfirmed and no ORVANU client relationship is claimed.</p>
+        <p class="work-note">Selected professional experience: the project cards above reflect work delivered by members of our team while working with other organisations — not by ORVANU as a vendor. Client names are withheld and no endorsement is implied. The &ldquo;Selected Product &amp; Operations Experience&rdquo; projects reflect previous professional product and operations experience and are not presented as ORVANU client engagements. The Vitelize Health entry is a draft public-site reference; the team&rsquo;s exact contribution is unconfirmed and no ORVANU client relationship is claimed.</p>
+        <dialog class="project-dialog" id="project-dialog" aria-labelledby="project-dialog-title">
+          <div class="project-dialog-inner">
+            <button type="button" class="project-dialog-close" id="project-dialog-close" aria-label="Close project details">&times;</button>
+            <div class="project-dialog-media"><img id="project-dialog-img" src="" alt="" width="1120" height="700" decoding="async"></div>
+            <div class="project-dialog-body">
+              <span class="exp-sector" id="project-dialog-category"></span>
+              <h3 id="project-dialog-title"></h3>
+              <div id="project-dialog-content"></div>
+            </div>
+          </div>
+        </dialog>
       </div>
     </section>
     <section class="section about" id="about" aria-labelledby="about-title">
